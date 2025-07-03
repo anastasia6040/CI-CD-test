@@ -1,0 +1,30 @@
+﻿name: Deploy React App to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master  # или main — проверь, как называется твоя ветка
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout репозитория
+        uses: actions/checkout@v3
+
+      - name: 🟢 Установка Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 📦 Установка зависимостей
+        run: npm install
+
+      - name: 🔨 Сборка проекта
+        run: npm run build
+
+      - name: 🚀 Деплой на GitHub Pages
+        run: npm run deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
