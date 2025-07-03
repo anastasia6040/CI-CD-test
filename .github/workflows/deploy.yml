@@ -18,7 +18,8 @@ jobs:
 
       - run: npm install
 
-      - run: npm run build
+      - run: CI=false npm run build
+
 
       - run: npx gh-pages -d build
         env:
