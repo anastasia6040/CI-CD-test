@@ -1,4 +1,4 @@
-﻿name: Deploy React App to GitHub Pages
+﻿name: Deploy to GitHub Pages
 
 on:
   push:
@@ -6,25 +6,21 @@ on:
       - master
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build React app
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          node-version: 18
-
-      - run: npm install
-
-      - run: CI=false npm run build
-
-      - name: Настройка git user для деплоя
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-      - run: npx gh-pages -d build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
