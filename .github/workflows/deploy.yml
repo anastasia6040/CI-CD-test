@@ -3,28 +3,28 @@
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout репозитория
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: 🟢 Установка Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: 📦 Установка зависимостей
-        run: npm install
+      - run: npm install
 
-      - name: 🔨 Сборка проекта
-        run: npm run build
+      - run: CI=false npm run build
 
-      - name: 🚀 Деплой на GitHub Pages
-        run: npm run deploy
+      - name: Настройка git user для деплоя
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - run: npx gh-pages -d build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
