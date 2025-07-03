@@ -2,7 +2,7 @@
   "name": "sitp",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/anastasia6040/CI-CD-test",
+  "homepage": "https://anastasia6040.github.io/CI-CD-test",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",

@@ -2,9 +2,9 @@
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
         run: npm install
 
       - name: 🔨 Сборка проекта
-        run: CI=false npm run build
+        run: npm run build
 
       - name: ✅ Запуск тестов
         run: npm test -- --watchAll=false
