@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('ðåíäåðèò çàãîëîâîê', () => {
+test('Ñ€ÐµÐ½Ð´ÐµÑ€Ð¸Ñ‚ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½Ð°', () => {
     render(<App />);
-    const linkElement = screen.getByText(/React/i);
-    expect(linkElement).toBeInTheDocument();
+    const titleElement = screen.getByText(/Ð“Ð¾Ð½Ñ‰Ð¸Ðº/i);
+    expect(titleElement).toBeInTheDocument();
 });
